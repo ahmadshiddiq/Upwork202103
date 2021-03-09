@@ -92,6 +92,27 @@ const data2 = [
   },
 ];
 
+function Header(props: any) {
+  return (
+    <div className="top">
+      <h1>{props.title}</h1>
+      <div className="top-wrapper">
+        <ul className="navbar">
+          <li className="menu">Overview</li>
+          <li className="menu active">Todo</li>
+          <li className="menu">Tools</li>
+          <li className="menu">Documents</li>
+          <li className="menu">Risk</li>
+          <li className="menu">Project</li>
+          <div className="search-menu">
+            <input type="text" name="" placeholder="Search" id="" />
+          </div>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 function Component1(props: any) {
   const [css, setCss] = React.useState("");
 
@@ -116,22 +137,8 @@ function Component1(props: any) {
 
       {/* Top */}
       <div className="component">
-        <div className="top">
-          <h1>Mileway, Stockholm</h1>
-          <div className="top-wrapper">
-            <ul className="navbar">
-              <li className="menu">Overview</li>
-              <li className="menu active">Todo</li>
-              <li className="menu">Tools</li>
-              <li className="menu">Documents</li>
-              <li className="menu">Risk</li>
-              <li className="menu">Project</li>
-              <div className="search-menu">
-                <input type="text" name="" placeholder="Search" id="" />
-              </div>
-            </ul>
-          </div>
-        </div>
+        <Header title="Mileway, Stockholm" />
+
         <div className="bottom">
           <div>
             <p className="description">
