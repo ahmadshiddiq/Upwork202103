@@ -1,19 +1,92 @@
-$base-color: #3366cc;
-$border1: 2px solid red;
-
-.component {
-    border: $border1;
-    padding: 10px;
+.container {
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
 }
 
-.component > span {
-    font-size: 40px;
-    color: $base-color;
+.navbar {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
 }
 
-.component .smallDiv {
-    background-color: green;
-    width: 100px;
-    padding: 5px;
-    color: white;
+.menu {
+  text-transform: uppercase;
+  list-style: none;
+  padding: 15px 0;
+  width: 100%;
+  background-color: rgb(226, 226, 226);
+  text-align: center;
+  color: rgb(44, 44, 44);
+  font-weight: 600;
+  margin: 0 2px;
+}
+
+.menu.active {
+  background-color: white;
+  border: 1px solid rgb(226, 226, 226);
+  border-bottom: 0px;
+  margin: 0 -2px;
+  padding-top: 20px;
+  margin-bottom: 5px;
+}
+
+.search-menu {
+  width: 100%;
+  background-color: rgb(226, 226, 226);
+  color: rgb(44, 44, 44);
+  font-weight: 600;
+  margin: 0 2px;
+  padding: 14px;
+}
+
+.top {
+  max-width: 1400px;
+  margin: 0 auto 50px auto;
+}
+
+.bottom {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.description {
+  display: inline-block;
+}
+
+.table-name {
+  padding-bottom: 22px;
+  display: inline-block;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+}
+
+.box-green {
+  height: 30px;
+  width: 30px;
+  border: 0;
+  background-color: rgb(92, 209, 92);
+}
+
+.box-gray {
+  height: 30px;
+  width: 30px;
+  border: 0;
+  background-color: rgb(179, 179, 179);
+}
+
+.table-header,
+.table-item {
+  border-bottom: 1px solid rgb(214, 214, 214);
+  padding: 10px 0;
+}
+
+.table-top {
+  margin-bottom: 48px;
 }
