@@ -1,6 +1,6 @@
 const _data1 = [
   {
-    key:1,
+    key: 1,
     done: true,
     name: "Arbetsmijlöplan ",
     task: "Upprätta",
@@ -9,7 +9,7 @@ const _data1 = [
     assignTo: "Henric Börgeson",
   },
   {
-    key:2,
+    key: 2,
     done: false,
     name: "Produktionsplan",
     task: "Upprätta",
@@ -18,7 +18,7 @@ const _data1 = [
     assignTo: "Rickard Nilsson",
   },
   {
-    key:3,
+    key: 3,
     done: false,
     name: "ADP-plan",
     task: "Upprätta",
@@ -27,7 +27,7 @@ const _data1 = [
     assignTo: "Johan Kvick",
   },
   {
-    key:4,
+    key: 4,
     done: false,
     name: "Skyddsrondsprotokoll",
     task: "Upprätta",
@@ -36,7 +36,7 @@ const _data1 = [
     assignTo: "Johan Thylin",
   },
   {
-    key:5,    
+    key: 5,
     done: true,
     name: "Riskanalyser",
     task: "Upprätta",
@@ -45,7 +45,7 @@ const _data1 = [
     assignTo: "Johan Kvick",
   },
   {
-    key:6,
+    key: 6,
     done: true,
     name: "KM-plan",
     task: "Upprätta",
@@ -54,7 +54,7 @@ const _data1 = [
     assignTo: "Henric Börgeson",
   },
   {
-    key:7,
+    key: 7,
     done: false,
     name: "Kontrollplan",
     task: "Upprätta",
@@ -66,7 +66,7 @@ const _data1 = [
 
 const _data2 = [
   {
-    key:8,
+    key: 8,
     done: true,
     name: "Arbetsmijlöplan",
     task: "Upprätta",
@@ -75,7 +75,7 @@ const _data2 = [
     assignTo: "Johan Kvick",
   },
   {
-    key:9,
+    key: 9,
     done: false,
     name: "Produktionsplan",
     task: "Upprätta",
@@ -84,7 +84,7 @@ const _data2 = [
     assignTo: "Henric Börgeson",
   },
   {
-    key:10,
+    key: 10,
     done: false,
     name: "ADP-plan",
     task: "Upprätta",
@@ -93,7 +93,7 @@ const _data2 = [
     assignTo: "Rickard Nilsson",
   },
   {
-    key:11,
+    key: 11,
     done: false,
     name: "Skyddsrondsprotokoll",
     task: "Upprätta",
@@ -124,6 +124,93 @@ function Header(props: any) {
   );
 }
 
+function GroupHeading(props: any) {
+  <tbody>
+    <tr>
+      <td colspan="5">
+        <b className="table-name">{props.title}</b>
+      </td>
+    </tr>
+  </tbody>;
+}
+
+function TableHeading(props: any) {
+  <tbody>
+    <tr>
+      <th>Done</th>
+      <th className="table-header">Name</th>
+      <th className="table-header">Task</th>
+      <th className="table-header">Status</th>
+      <th className="table-header">Deadline</th>
+      <th className="table-header">Assigned to</th>
+    </tr>
+  </tbody>;
+}
+
+function TableItems1(props: any) {
+  return (
+    <tbody>
+      {data1.map((item) => (
+        <tr key={item.key} className="table-row">
+          <td width="5%" className="table-box">
+            <button
+              onClick={() => handleClick1(item.key)}
+              className={`${complete === item.done ? "box-green" : "box-gray"}`}
+            ></button>
+          </td>
+          <td width="40%" className="table-item">
+            {item.name}
+          </td>
+          <td width="14%" className="table-item">
+            {item.task}
+          </td>
+          <td width="13%" className="table-item">
+            {item.status}
+          </td>
+          <td width="13%" className="table-item">
+            {item.deadline}
+          </td>
+          <td width="15%" className="table-item">
+            {item.assignTo}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  );
+}
+
+function TableItems2(props: any) {
+  return (
+    <tbody>
+      {data2.map((item) => (
+        <tr key={item.name} className="table-row">
+          <td width="5%" className="table-box">
+            <button
+              onClick={() => handleClick2(item.key)}
+              className={`${complete === item.done ? "box-green" : "box-gray"}`}
+            ></button>
+          </td>
+          <td width="40%" className="table-item">
+            {item.name}
+          </td>
+          <td width="14%" className="table-item">
+            {item.task}
+          </td>
+          <td width="13%" className="table-item">
+            {item.status}
+          </td>
+          <td width="13%" className="table-item">
+            {item.deadline}
+          </td>
+          <td width="15%" className="table-item">
+            {item.assignTo}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  );
+}
+
 function Component1(props: any) {
   const [css, setCss] = React.useState("");
 
@@ -133,22 +220,21 @@ function Component1(props: any) {
 
   const handleClick1 = (key) => {
     let newData = [...data1];
-    let item = data1.find(d => d.key == key);
+    let item = data1.find((d) => d.key == key);
     if (item) {
-      item.done = !item.done
+      item.done = !item.done;
     }
     setData1(newData);
   };
 
-  const handleClick2= (key) => {
+  const handleClick2 = (key) => {
     let newData = [...data1];
-    let item = data2.find(d => d.key == key);
+    let item = data2.find((d) => d.key == key);
     if (item) {
-      item.done = !item.done
+      item.done = !item.done;
     }
     setData2(newData);
   };
-
 
   React.useEffect(() => {
     BridgeStyling.loadStyle("./src/Component1.scss").then((css) => {
@@ -176,110 +262,19 @@ function Component1(props: any) {
             </p>
             <div className="table-top">
               <table className="table">
+                <GroupHeading title="Mandatory –" />
 
-                {/* Ahmad: create component GroupHeading */}
-                <tbody>
-                  <tr>
-                    <td colspan="5">
-                      <b className="table-name">Mandatory –</b>
-                    </td>                            
-                  </tr>
-                </tbody>                
+                <TableHeading />
 
-                {/* Ahmad:  create component TableHeading */}
-                <tbody>
-                  <tr>
-                    <th>Done</th>
-                    <th className="table-header">Name</th>
-                    <th className="table-header">Task</th>
-                    <th className="table-header">Status</th>
-                    <th className="table-header">Deadline</th>
-                    <th className="table-header">Assigned to</th>
-                  </tr>
-                </tbody>
+                {/* I don't understand how to create dynamic data */}
+                <TableItems1 />
 
-                {/* Ahmad:  create component TableItems */}
-                <tbody>
-                  {data1.map((item) => (
-                    <tr key={item.key} className="table-row">
-                      <td width="5%" className="table-box">
-                        <button
-                          onClick={() => handleClick1(item.key)}
-                          className={`${
-                            complete === item.done ? "box-green" : "box-gray"
-                          }`}
-                        ></button>
-                      </td>
-                      <td width="40%" className="table-item">
-                        {item.name}
-                      </td>
-                      <td width="14%" className="table-item">
-                        {item.task}
-                      </td>
-                      <td width="13%" className="table-item">
-                        {item.status}
-                      </td>
-                      <td width="13%" className="table-item">
-                        {item.deadline}
-                      </td>
-                      <td width="15%" className="table-item">
-                        {item.assignTo}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
+                <GroupHeading title="Ej obligatoriska –" />
 
-                {/* Ahmad:  reuse component GroupHeading */}
-                <tbody>
-                  <tr>
-                    <td colspan="5">
-                      <b className="table-name">Ej obligatoriska –</b>
-                    </td>                            
-                  </tr>
-                </tbody>
+                <TableHeading />
 
-                {/* Ahmad:  reuse component TableHeading */}
-                <tbody>
-                  <tr>
-                    <th>Done</th>
-                    <th className="table-header">Name</th>
-                    <th className="table-header">Task</th>
-                    <th className="table-header">Status</th>
-                    <th className="table-header">Deadline</th>
-                    <th className="table-header">Assigned to</th>
-                  </tr>
-                </tbody>
-
-                  {/* Ahmad:  reuse component TableItems */}
-                <tbody>
-                  {data2.map((item) => (
-                    <tr key={item.name} className="table-row">
-                      <td width="5%" className="table-box">
-                        <button
-                          onClick={() => handleClick2(item.key)}
-                          className={`${
-                            complete === item.done ? "box-green" : "box-gray"
-                          }`}
-                        ></button>
-                      </td>
-                      <td width="40%" className="table-item">
-                        {item.name}
-                      </td>
-                      <td width="14%" className="table-item">
-                        {item.task}
-                      </td>
-                      <td width="13%" className="table-item">
-                        {item.status}
-                      </td>
-                      <td width="13%" className="table-item">
-                        {item.deadline}
-                      </td>
-                      <td width="15%" className="table-item">
-                        {item.assignTo}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
+                {/* I create this two because the function inside the component different with the first one */}
+                <TableItems2 />
               </table>
             </div>
           </div>
