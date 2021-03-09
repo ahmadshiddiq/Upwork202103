@@ -1,107 +1,5 @@
-const _data1 = [
-  {
-    key: 1,
-    done: true,
-    name: "Arbetsmijlöplan ",
-    task: "Upprätta",
-    status: "Klart",
-    deadline: "",
-    assignTo: "Henric Börgeson",
-  },
-  {
-    key: 2,
-    done: false,
-    name: "Produktionsplan",
-    task: "Upprätta",
-    status: "",
-    deadline: "",
-    assignTo: "Rickard Nilsson",
-  },
-  {
-    key: 3,
-    done: false,
-    name: "ADP-plan",
-    task: "Upprätta",
-    status: "",
-    deadline: "",
-    assignTo: "Johan Kvick",
-  },
-  {
-    key: 4,
-    done: false,
-    name: "Skyddsrondsprotokoll",
-    task: "Upprätta",
-    status: "",
-    deadline: "",
-    assignTo: "Johan Thylin",
-  },
-  {
-    key: 5,
-    done: true,
-    name: "Riskanalyser",
-    task: "Upprätta",
-    status: "Inskickad",
-    deadline: "",
-    assignTo: "Johan Kvick",
-  },
-  {
-    key: 6,
-    done: true,
-    name: "KM-plan",
-    task: "Upprätta",
-    status: "Klar",
-    deadline: "",
-    assignTo: "Henric Börgeson",
-  },
-  {
-    key: 7,
-    done: false,
-    name: "Kontrollplan",
-    task: "Upprätta",
-    status: "",
-    deadline: "",
-    assignTo: "Johan Kvick",
-  },
-];
 
-const _data2 = [
-  {
-    key: 8,
-    done: true,
-    name: "Arbetsmijlöplan",
-    task: "Upprätta",
-    status: "Klart",
-    deadline: "",
-    assignTo: "Johan Kvick",
-  },
-  {
-    key: 9,
-    done: false,
-    name: "Produktionsplan",
-    task: "Upprätta",
-    status: "Ej påbörjad",
-    deadline: "",
-    assignTo: "Henric Börgeson",
-  },
-  {
-    key: 10,
-    done: false,
-    name: "ADP-plan",
-    task: "Upprätta",
-    status: "Ej påbörjad",
-    deadline: "",
-    assignTo: "Rickard Nilsson",
-  },
-  {
-    key: 11,
-    done: false,
-    name: "Skyddsrondsprotokoll",
-    task: "Upprätta",
-    status: "Ej påbörjad",
-    deadline: "",
-    assignTo: "Johan Kvick",
-  },
-];
+
 
 function Header(props: any) {
   return (
@@ -125,17 +23,17 @@ function Header(props: any) {
 }
 
 function GroupHeading(props: any) {
-  <tbody>
+  return (<tbody>
     <tr>
-      <td colspan="5">
+      <td colSpan="5">
         <b className="table-name">{props.title}</b>
       </td>
     </tr>
-  </tbody>;
+  </tbody>);
 }
 
 function TableHeading(props: any) {
-  <tbody>
+  return (<tbody>
     <tr>
       <th>Done</th>
       <th className="table-header">Name</th>
@@ -144,50 +42,23 @@ function TableHeading(props: any) {
       <th className="table-header">Deadline</th>
       <th className="table-header">Assigned to</th>
     </tr>
-  </tbody>;
+  </tbody>);
 }
 
-function TableItems1(props: any) {
+function TableItems(props: any) {
+
+  const handleClick = (key) => {
+    props.switchButton(key);
+  };
+
   return (
     <tbody>
-      {data1.map((item) => (
+      {props.group.data.map((item) => (
         <tr key={item.key} className="table-row">
           <td width="5%" className="table-box">
             <button
-              onClick={() => handleClick1(item.key)}
-              className={`${complete === item.done ? "box-green" : "box-gray"}`}
-            ></button>
-          </td>
-          <td width="40%" className="table-item">
-            {item.name}
-          </td>
-          <td width="14%" className="table-item">
-            {item.task}
-          </td>
-          <td width="13%" className="table-item">
-            {item.status}
-          </td>
-          <td width="13%" className="table-item">
-            {item.deadline}
-          </td>
-          <td width="15%" className="table-item">
-            {item.assignTo}
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  );
-}
-
-function TableItems2(props: any) {
-  return (
-    <tbody>
-      {data2.map((item) => (
-        <tr key={item.name} className="table-row">
-          <td width="5%" className="table-box">
-            <button
-              onClick={() => handleClick2(item.key)}
-              className={`${complete === item.done ? "box-green" : "box-gray"}`}
+              onClick={() => handleClick(item.key)}
+              className={`${props.buttons[item.key] ? "box-green" : "box-gray"}`}
             ></button>
           </td>
           <td width="40%" className="table-item">
@@ -214,27 +85,13 @@ function TableItems2(props: any) {
 function Component1(props: any) {
   const [css, setCss] = React.useState("");
 
-  const [complete, setComplete] = React.useState(true);
-  const [data1, setData1] = React.useState(_data1);
-  const [data2, setData2] = React.useState(_data2);
+  const [buttons, setButtons] = React.useState({});
 
-  const handleClick1 = (key) => {
-    let newData = [...data1];
-    let item = data1.find((d) => d.key == key);
-    if (item) {
-      item.done = !item.done;
-    }
-    setData1(newData);
-  };
-
-  const handleClick2 = (key) => {
-    let newData = [...data1];
-    let item = data2.find((d) => d.key == key);
-    if (item) {
-      item.done = !item.done;
-    }
-    setData2(newData);
-  };
+  let switchButton = (key:string) => {
+    let newButtons = { ...buttons};
+    newButtons[key] = !newButtons[key];
+    setButtons(newButtons);
+  }
 
   React.useEffect(() => {
     BridgeStyling.loadStyle("./src/Component1.scss").then((css) => {
@@ -262,19 +119,12 @@ function Component1(props: any) {
             </p>
             <div className="table-top">
               <table className="table">
-                <GroupHeading title="Mandatory –" />
-
+              {_data.map( d => (<React.Fragment key={d.title}>
+                <GroupHeading title={d.title} />
                 <TableHeading />
-
-                {/* I don't understand how to create dynamic data */}
-                <TableItems1 />
-
-                <GroupHeading title="Ej obligatoriska –" />
-
-                <TableHeading />
-
-                {/* I create this two because the function inside the component different with the first one */}
-                <TableItems2 />
+                <TableItems buttons={buttons} group={d} switchButton={switchButton} />
+                </React.Fragment>)
+              )}
               </table>
             </div>
           </div>
