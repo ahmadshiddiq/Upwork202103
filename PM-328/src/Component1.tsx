@@ -153,7 +153,7 @@ function Component1(props: any) {
                 </thead>
                 <tbody>
                   {data1.map((item) => (
-                    <tr className="table-row">
+                    <tr key={item.name} className="table-row">
                       <td width="5%" className="table-box">
                         <button
                           onClick={handleClick}
@@ -198,11 +198,14 @@ function Component1(props: any) {
                 </thead>
                 <tbody>
                   {data2.map((item) => (
-                    <tr className="table-row">
+                    <tr key={item.name} className="table-row">
                       <td width="5%" className="table-box">
-                        <div
-                          className={`${item.done ? "box-green" : "box-gray"}`}
-                        ></div>
+                        <button
+                          onClick={handleClick}
+                          className={`${
+                            complete === item.done ? "box-green" : "box-gray"
+                          }`}
+                        ></button>
                       </td>
                       <td width="40%" className="table-item">
                         {item.name}
