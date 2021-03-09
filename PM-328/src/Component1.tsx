@@ -175,9 +175,15 @@ function Component1(props: any) {
               nästa steg.
             </p>
             <div className="table-top">
-              <b className="table-name">Mandatory –</b>
               <table className="table">
-                <thead>
+                <tbody>
+                  <tr>
+                    <td colspan="5">
+                      <b className="table-name">Mandatory –</b>
+                    </td>                            
+                  </tr>
+                </tbody>                
+                <tbody>
                   <tr>
                     <th>Done</th>
                     <th className="table-header">Name</th>
@@ -186,7 +192,7 @@ function Component1(props: any) {
                     <th className="table-header">Deadline</th>
                     <th className="table-header">Assigned to</th>
                   </tr>
-                </thead>
+                </tbody>
                 <tbody>
                   {data1.map((item) => (
                     <tr key={item.key} className="table-row">
@@ -216,13 +222,14 @@ function Component1(props: any) {
                     </tr>
                   ))}
                 </tbody>
-              </table>
-            </div>
-
-            <div className="table-bottom">
-              <b className="table-name">Ej obligatoriska –</b>
-              <table className="table">
-                <thead>
+                <tbody>
+                  <tr>
+                    <td colspan="5">
+                      <b className="table-name">Ej obligatoriska –</b>
+                    </td>                            
+                  </tr>
+                </tbody>
+                <tbody>
                   <tr>
                     <th>Done</th>
                     <th className="table-header">Name</th>
@@ -231,7 +238,7 @@ function Component1(props: any) {
                     <th className="table-header">Deadline</th>
                     <th className="table-header">Assigned to</th>
                   </tr>
-                </thead>
+                </tbody>
                 <tbody>
                   {data2.map((item) => (
                     <tr key={item.name} className="table-row">
