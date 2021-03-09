@@ -115,7 +115,7 @@ function Component1(props: any) {
       {/* You do not have not write React code, normal HTML is also OK */}
 
       {/* Top */}
-      <div className="container">
+      <div className="component">
         <div className="top">
           <h1>Mileway, Stockholm</h1>
           <div className="top-wrapper">
@@ -143,7 +143,7 @@ function Component1(props: any) {
               <table className="table">
                 <thead>
                   <tr>
-                    <th className="table-box-header">Done</th>
+                    <th>Done</th>
                     <th className="table-header">Name</th>
                     <th className="table-header">Task</th>
                     <th className="table-header">Status</th>
@@ -188,7 +188,7 @@ function Component1(props: any) {
               <table className="table">
                 <thead>
                   <tr>
-                    <th className="table-box-header">Done</th>
+                    <th>Done</th>
                     <th className="table-header">Name</th>
                     <th className="table-header">Task</th>
                     <th className="table-header">Status</th>
