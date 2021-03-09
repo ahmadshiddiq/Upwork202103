@@ -1,5 +1,6 @@
-const data1 = [
+const _data1 = [
   {
+    key:1,
     done: true,
     name: "Arbetsmijlöplan ",
     task: "Upprätta",
@@ -8,6 +9,7 @@ const data1 = [
     assignTo: "Henric Börgeson",
   },
   {
+    key:2,
     done: false,
     name: "Produktionsplan",
     task: "Upprätta",
@@ -16,6 +18,7 @@ const data1 = [
     assignTo: "Rickard Nilsson",
   },
   {
+    key:3,
     done: false,
     name: "ADP-plan",
     task: "Upprätta",
@@ -24,6 +27,7 @@ const data1 = [
     assignTo: "Johan Kvick",
   },
   {
+    key:4,
     done: false,
     name: "Skyddsrondsprotokoll",
     task: "Upprätta",
@@ -32,6 +36,7 @@ const data1 = [
     assignTo: "Johan Thylin",
   },
   {
+    key:5,    
     done: true,
     name: "Riskanalyser",
     task: "Upprätta",
@@ -40,6 +45,7 @@ const data1 = [
     assignTo: "Johan Kvick",
   },
   {
+    key:6,
     done: true,
     name: "KM-plan",
     task: "Upprätta",
@@ -48,6 +54,7 @@ const data1 = [
     assignTo: "Henric Börgeson",
   },
   {
+    key:7,
     done: false,
     name: "Kontrollplan",
     task: "Upprätta",
@@ -57,8 +64,9 @@ const data1 = [
   },
 ];
 
-const data2 = [
+const _data2 = [
   {
+    key:8,
     done: true,
     name: "Arbetsmijlöplan",
     task: "Upprätta",
@@ -67,6 +75,7 @@ const data2 = [
     assignTo: "Johan Kvick",
   },
   {
+    key:9,
     done: false,
     name: "Produktionsplan",
     task: "Upprätta",
@@ -75,6 +84,7 @@ const data2 = [
     assignTo: "Henric Börgeson",
   },
   {
+    key:10,
     done: false,
     name: "ADP-plan",
     task: "Upprätta",
@@ -83,6 +93,7 @@ const data2 = [
     assignTo: "Rickard Nilsson",
   },
   {
+    key:11,
     done: false,
     name: "Skyddsrondsprotokoll",
     task: "Upprätta",
@@ -117,9 +128,27 @@ function Component1(props: any) {
   const [css, setCss] = React.useState("");
 
   const [complete, setComplete] = React.useState(true);
-  const handleClick = () => {
-    setComplete(!complete);
+  const [data1, setData1] = React.useState(_data1);
+  const [data2, setData2] = React.useState(_data2);
+
+  const handleClick1 = (key) => {
+    let newData = [...data1];
+    let item = data1.find(d => d.key == key);
+    if (item) {
+      item.done = !item.done
+    }
+    setData1(newData);
   };
+
+  const handleClick2= (key) => {
+    let newData = [...data1];
+    let item = data2.find(d => d.key == key);
+    if (item) {
+      item.done = !item.done
+    }
+    setData2(newData);
+  };
+
 
   React.useEffect(() => {
     BridgeStyling.loadStyle("./src/Component1.scss").then((css) => {
@@ -160,10 +189,10 @@ function Component1(props: any) {
                 </thead>
                 <tbody>
                   {data1.map((item) => (
-                    <tr key={item.name} className="table-row">
+                    <tr key={item.key} className="table-row">
                       <td width="5%" className="table-box">
                         <button
-                          onClick={handleClick}
+                          onClick={() => handleClick1(item.key)}
                           className={`${
                             complete === item.done ? "box-green" : "box-gray"
                           }`}
@@ -208,7 +237,7 @@ function Component1(props: any) {
                     <tr key={item.name} className="table-row">
                       <td width="5%" className="table-box">
                         <button
-                          onClick={handleClick}
+                          onClick={() => handleClick2(item.key)}
                           className={`${
                             complete === item.done ? "box-green" : "box-gray"
                           }`}
