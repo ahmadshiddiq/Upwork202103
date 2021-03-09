@@ -176,6 +176,8 @@ function Component1(props: any) {
             </p>
             <div className="table-top">
               <table className="table">
+
+                {/* Ahmad: create component GroupHeading */}
                 <tbody>
                   <tr>
                     <td colspan="5">
@@ -183,6 +185,8 @@ function Component1(props: any) {
                     </td>                            
                   </tr>
                 </tbody>                
+
+                {/* Ahmad:  create component TableHeading */}
                 <tbody>
                   <tr>
                     <th>Done</th>
@@ -193,6 +197,8 @@ function Component1(props: any) {
                     <th className="table-header">Assigned to</th>
                   </tr>
                 </tbody>
+
+                {/* Ahmad:  create component TableItems */}
                 <tbody>
                   {data1.map((item) => (
                     <tr key={item.key} className="table-row">
@@ -222,6 +228,8 @@ function Component1(props: any) {
                     </tr>
                   ))}
                 </tbody>
+
+                {/* Ahmad:  reuse component GroupHeading */}
                 <tbody>
                   <tr>
                     <td colspan="5">
@@ -229,6 +237,8 @@ function Component1(props: any) {
                     </td>                            
                   </tr>
                 </tbody>
+
+                {/* Ahmad:  reuse component TableHeading */}
                 <tbody>
                   <tr>
                     <th>Done</th>
@@ -239,6 +249,8 @@ function Component1(props: any) {
                     <th className="table-header">Assigned to</th>
                   </tr>
                 </tbody>
+
+                  {/* Ahmad:  reuse component TableItems */}
                 <tbody>
                   {data2.map((item) => (
                     <tr key={item.name} className="table-row">
